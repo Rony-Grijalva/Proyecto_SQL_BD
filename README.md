@@ -47,20 +47,92 @@ Este proyecto busca transformar datos operacionales en información útil para r
 ---
 ## 🔍 Sobre los Datos
 
-El dataset utilizado en este proyecto fue obtenido desde Kaggle y se pueden encontrar [🔗 aquí](https://www.kaggle.com/datasets/muhammadshahidazeem/customer-churn-dataset)
+## 🔍 Sobre los Datos
 
-**El dataset original fue procesado y normalizado** para simular un entorno real de producción dentro del sector de telecomunicaciones.
+El dataset utilizado en este proyecto fue obtenido desde Kaggle y puede encontrarse [🔗 aquí](https://www.kaggle.com/datasets/muhammadshahidazeem/customer-churn-dataset).
 
-La información almacenada permite analizar la relación contractual, financiera y demográfica de los clientes, facilitando la identificación de patrones de comportamiento asociados al abandono del servicio (**Churn**).
+A partir del conjunto de datos original, se realizó un proceso de adaptación, enriquecimiento y normalización con el objetivo de simular un entorno real de producción dentro del sector de telecomunicaciones peruano.
 
-El conjunto de datos cuenta con:
+El proyecto fue diseñado para representar escenarios empresariales relacionados con la retención de clientes, el análisis de comportamiento y la identificación de patrones de abandono (**Churn**) mediante el uso de SQL y análisis exploratorio de datos.
+
+---
+
+### 📡 Adaptación al Contexto Peruano
+
+Con el fin de generar un análisis más realista y alineado al mercado nacional, se incorporaron variables estratégicas relacionadas con operadores y regiones del Perú.
+
+#### 📶 Operadores de Telecomunicaciones
+
+Se añadieron los principales operadores del mercado peruano:
+
+- Claro
+- Movistar
+- Entel
+- Bitel
+
+Esto permite evaluar diferencias en:
+
+- Participación de mercado
+- Niveles de fidelización
+- Calidad de retención
+- Tasas de churn por operador
+
+---
+
+### 🌎 Regionalización del Dataset
+
+También se incorporaron regiones representativas del país, entre ellas:
+
+- Lima
+- Piura
+- Cusco
+- Iquitos
+- Trujillo
+- Huancayo
+- Arequipa
+- Chiclayo
+- Huancayo
+- Iquitos
+
+La regionalización permite identificar posibles problemas relacionados con:
+
+- Cobertura de red
+- Calidad del servicio
+- Infraestructura técnica
+- Diferencias de comportamiento entre regiones
+
+---
+
+### 🏗️ Procesamiento y Normalización
+
+El dataset fue transformado y normalizado en un modelo relacional compuesto por tres tablas principales:
+
+- `Clientes`
+- `Servicios`
+- `Facturacion`
+
+La normalización permitió garantizar:
+
+- ✅ Integridad de los datos
+- ✅ Reducción de redundancia
+- ✅ Mayor eficiencia en consultas SQL
+- ✅ Mejor organización de la información
+- ✅ Escalabilidad para futuros dashboards y modelos predictivos
+
+---
+
+### 📌 Características del Dataset
+
+El conjunto de datos final cuenta con:
 
 - 📊 **64,374 registros**
 - 🗂️ **3 tablas relacionales**
-- 🌎 Información de clientes de diversas regiones del Perú
-- 📡 Datos asociados a los principales operadores del mercado
-
----
+- 👥 Información demográfica de clientes
+- 🌎 Datos de múltiples regiones del Perú
+- 📡 Información operativa de operadores telecom
+- 💳 Variables financieras y de comportamiento
+- 📈 Indicadores clave para análisis de retención y fidelización
+- 🧠 Información útil para la construcción de estrategias de Customer Success
 
 ```sql
 SELECT 
@@ -71,7 +143,7 @@ FROM Clientes C
 JOIN Servicios S ON C.CustomerID = S.CustomerID
 JOIN Facturacion F ON C.CustomerID = F.CustomerID;
 ```
-![alt text](p16-1.png)
+![alt text](images/p16-1.png)
 
 ## 🏗️ Fase 1: Modelado de Datos (ETL)
 El dataset original fue normalizado en un modelo relacional de 3 tablas para garantizar integridad y eficiencia.
@@ -254,7 +326,7 @@ FROM Facturacion;
 **🧠 Insight:**
 La tasa general de churn muestra qué tan grande es el problema de pérdida de clientes en la empresa. Un churn alto indica baja fidelización y posibles problemas en el servicio, afectando directamente los ingresos y la estabilidad del negocio.
 
-![alt text](p1-1.png)
+![alt text](images/p1-1.png)
 
 1. **Tasa General de Churn (47.37%)**: Una pérdida de casi la mitad de la cartera indica una crisis de retención. El costo de adquisición (CAC) debe ser altísimo para mantener operativa la empresa. Es urgente identificar si es un problema de producto o de mercado. 
 
@@ -277,7 +349,7 @@ ORDER BY Total_Clientes DESC;
 ```
 **🧠 Insight:**  Identifica qué operador tiene mayor participación de mercado, lo cual es clave para interpretar correctamente los niveles de abandono.
 
-![alt text](p2-1.png)
+![alt text](images/p2-1.png)
 
 2.  y 3. **El Colapso de los "Challengers" (Bitel/Entel)**: Mientras Claro y Movistar mantienen tasas de churn saludables (~25%), Bitel (100%) y Entel (78%) están desapareciendo del dataset. El mercado peruano se está consolidando hacia los operadores con mejor infraestructura. 
 
@@ -301,7 +373,7 @@ ORDER BY Tasa_Churn DESC;
 ```
 **🧠 Insight:**  Identifica qué operador tiene mayor participación de mercado, lo cual es clave para interpretar correctamente los niveles de abandono.
 
-![alt text](p3-2.png)
+![alt text](images/p3-2.png)
 
 2. y 3. **El Colapso de los "Challengers" (Bitel/Entel)**: Mientras Claro y Movistar mantienen tasas de churn saludables (~25%), Bitel (100%) y Entel (78%) están desapareciendo del dataset. El mercado peruano se está consolidando hacia los operadores con mejor infraestructura.
 
@@ -323,7 +395,7 @@ ORDER BY Tasa_Churn DESC;
 ```
 **🧠 Insight:**  Identifica qué operador tiene mayor participación de mercado, lo cual es clave para interpretar correctamente los niveles de abandono.
 
-![alt text](p4-1.png)
+![alt text](images/p4-1.png)
 
 4. **Geografía del Abandono**: El abandono total (100%) en Iquitos, Chiclayo y Huancayo sugiere una brecha de conectividad. No es un problema de marketing; es un problema de ingeniería de red en provincias.
 
@@ -345,7 +417,7 @@ JOIN Facturacion F ON S.CustomerID = F.CustomerID
 GROUP BY S.Subscription_Type
 ORDER BY Tasa_Churn DESC;
 ```
-![alt text](p5-1.png)
+![alt text](images/p5-1.png)
 
 5. **Suscripciones (Riesgo Homogéneo):** El churn no discrimina por nivel de pago (Basic vs Premium). Esto significa que pagar más no garantiza una mejor experiencia o fidelidad, lo cual es peligroso para el ARPU (Ingreso promedio por usuario).
 
@@ -374,7 +446,7 @@ ORDER BY S.Support_Calls;
 
 **🧠 Insight:**  Un mayor número de llamadas a soporte suele estar asociado a una mayor probabilidad de abandono.
 
-![alt text](p6-1.png)
+![alt text](images/p6-1.png)
 
 6. **El Umbral de la Paciencia (Soporte)**: El "punto de no retorno" es la 5ta llamada. Un cliente que llama 4 veces tiene 24% de riesgo, pero a la 5ta llamada el riesgo salta al 60%. 
 
@@ -398,7 +470,7 @@ ORDER BY Payment_Delay;
 ```
 **🧠 Insight:**  Clientes con retrasos frecuentes tienen mayor tendencia a abandonar el servicio.
 
-![alt text](p7-1.png)
+![alt text](images/p7-1.png)
 
 7. **Morosidad como Predictor (16 días)**: Los primeros 15 días de retraso son incidentales (churn <11%). Sin embargo, al día 16 el cliente "se desconecta" emocionalmente del servicio (churn >57%). La cobranza debe ser preventiva, no reactiva.
 
@@ -418,7 +490,7 @@ AND Churn = 1;
 ```
 **🧠 Insight:**  La pérdida de clientes de alto valor impacta directamente en los ingresos.
 
-![alt text](p8.png)
+![alt text](images/p8.png)
 
 **SE MUESTRA SOLO UNA PARTE DE CLIENTES DEL TOTAL (64374)** 
 
@@ -446,7 +518,7 @@ ORDER BY Abandonos DESC;
 
 **🧠 Insight:**  Permite ubicar exactamente dónde ocurre la mayor pérdida de clientes.
 
-![alt text](p9.png)
+![alt text](images/p9.png)
 
 9. **Focos de Conflicto (Región + Operador)**: Confirmamos que el problema de Bitel y Entel es geográfico. Su incapacidad de retener en provincias como Cusco o Iquitos es el principal motor del churn global del proyecto.
 
@@ -481,7 +553,7 @@ GROUP BY
 ```
 **🧠 Insight:**  Permite identificar segmentos demográficos más propensos al abandono.
 
-![alt text](p10.png)
+![alt text](images/p10.png)
 
 10. **Volumen Demográfico (Mayores):** Aunque todos los grupos tienen tasas similares, el segmento de "Mayores" es el que más clientes aporta al churn (17,120). Es el segmento con mayor potencial de recuperación mediante atención personalizada.
 
@@ -503,7 +575,7 @@ GROUP BY S.Contract_Length;
 ```
 **🧠 Insight:**  Contratos más cortos suelen presentar mayor churn.
 
-![alt text](p11.png)
+![alt text](images/p11.png)
 
 11. **La Puerta Giratoria (Contratos Mensuales)**: Los contratos "Monthly" son los más volátiles. El README debe destacar la necesidad de estrategias de "Lock-in" (migración a planes anuales) para estabilizar la cartera.
 
@@ -524,7 +596,7 @@ GROUP BY S.Operador;
 ```
 **🧠 Insight:**  Operadores con mayor antigüedad promedio muestran mejor retención.
 
-![alt text](p12.png)
+![alt text](images/p12.png)
 
 12. **El Espejismo de la Antigüedad**: Tener clientes antiguos (promedio 35 meses) no garantiza lealtad si el servicio actual falla. Bitel pierde clientes de larga data, lo que indica que la competencia está ofreciendo mejores incentivos de migración.
 
@@ -547,7 +619,7 @@ WHERE Support_Calls > 5 AND Payment_Delay > 5;
 
 **🧠 Insight:**  Clientes con alto nivel de reclamos y retrasos presentan mayor riesgo.
 
-![alt text](p13.png)
+![alt text](images/p13.png)
 
 **SE MUESTRA SOLO UNA PARTE DE CLIENTES DEL TOTAL (30781)** 
 
@@ -568,7 +640,7 @@ WHERE Churn = 1;
 
 **🧠 Insight:**  Permite entender cuánto dinero se pierde por falta de retención.
 
-![alt text](p14.png)
+![alt text](images/p14.png)
 
 14. **El Costo del Silencio (S/ 1.5M)**: Esta cifra es el "titular" de tu proyecto. El churn no es solo una métrica, es una pérdida millonaria directa que impacta la valoración de la empresa.
 
@@ -593,7 +665,7 @@ FROM Facturacion;
 ```
 **🧠 Insight:**  Permite enfocar estrategias en clientes de mayor impacto económico.
 
-![alt text](p15.png)
+![alt text](images/p15.png)
 
 **SE MUESTRA SOLO UNA PARTE DE CLIENTES DEL TOTAL (64374)** 
 

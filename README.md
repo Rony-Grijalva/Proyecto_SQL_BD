@@ -235,6 +235,7 @@ FROM customer_churn_final;
 
 SELECT COUNT(*) FROM Facturacion; 
 ```
+![alt text](images/relacional.png)
 
 ### 📋 Diccionario de Datos
 

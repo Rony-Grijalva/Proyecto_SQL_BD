@@ -47,8 +47,6 @@ Este proyecto busca transformar datos operacionales en información útil para r
 ---
 ## 🔍 Sobre los Datos
 
-## 🔍 Sobre los Datos
-
 El dataset utilizado en este proyecto fue obtenido desde Kaggle y puede encontrarse [🔗 aquí](https://www.kaggle.com/datasets/muhammadshahidazeem/customer-churn-dataset).
 
 A partir del conjunto de datos original, se realizó un proceso de adaptación, enriquecimiento y normalización con el objetivo de simular un entorno real de producción dentro del sector de telecomunicaciones peruano.
